@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>html/JS demo</title>
+<script type="text/javascript">
+	function afterSend() {
+		var p1_text = document.getElementById("greeting");
+		var userName = document.getElementById("userName"); 
+		var password = document.getElementById("passWord"); 
+		if (userName.value.length<1 || password.value.length<1)
+		{
+			p1_text.innerHTML = "Please input both user name and password."; 
+			p1_text.style.color = 'blue';
+		} 
+		else
+		{
+			p1_text.innerHTML = "Welcome: " + userName.value;
+			p1_text.style.color = 'red';
+		}
+		displayTime();
+		return false; 
+	}
+	
+	function checkTime(i) {
+	    if (i < 10) {
+	        i = "0" + i;
+	    }
+	    return i;
+	}
+
+	function displayTime() {
+	    var today = new Date();
+	    var h = today.getHours();
+	    var m = today.getMinutes();
+	    var s = today.getSeconds();
+	    // add a zero in front of numbers<10
+	    m = checkTime(m);
+	    s = checkTime(s);
+	    document.getElementById('time').innerHTML = "Current time is: " + h + ":" + m + ":" + s;
+	    t = setTimeout(function () {
+	        displayTime()
+	    }, 500);
+	}
+	
+	
+</script>
+</head>
+<body>
+	<form>
+		<table>
+			<td><input type="text" name="userName" placeholder="User Name"
+				id="userName" size="15" style="background-color: transparent;" /></td>
+			<td><input type="password" name="password"
+				placeholder="Password" id="passWord" size="15"
+				style="background-color: transparent;"></td>
+			<td><input type="submit" value="send" name="send"
+				onclick="return afterSend();"
+				style="color: blue; font-family: cursive; background-color: antiquewhite; font-weight: 800"></td>
+
+		</table>
+	</form>
+
+	<p id="greeting"></p>
+	<p id="time"></p>
+
+
+</body>
+</html>
